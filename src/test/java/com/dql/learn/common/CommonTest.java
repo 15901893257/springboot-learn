@@ -16,6 +16,11 @@ public class CommonTest {
         f(a1, a2);
     }
 
+    @Test
+    public void test01() {
+
+    }
+
     private void f(int a1, int a2){
         System.out.println(a1 + ":" + a2);
     }
