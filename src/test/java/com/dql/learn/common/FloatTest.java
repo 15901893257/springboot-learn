@@ -32,4 +32,26 @@ public class FloatTest {
         System.out.println(s4);
         System.out.println(s5);
     }
+
+    @Test
+    public void test03() {
+        StringBuilder stringBuilder = new StringBuilder("world");
+        f(stringBuilder);
+        System.out.print(stringBuilder.toString());
+    }
+
+
+    @Test
+    public void test04() {
+        double a = (double) (5 - 3) / 2;
+        System.out.println(a);
+    }
+
+    private void f(Integer o) {
+        o = 1;
+    }
+
+    private void f(StringBuilder stringBuilder) {
+        stringBuilder.append("hello");
+    }
 }

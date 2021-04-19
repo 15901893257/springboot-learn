@@ -3,6 +3,7 @@ package com.dql.learn.stream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.assertj.core.util.Lists;
@@ -30,6 +31,16 @@ public class ListTest {
         Man man = new Man();
 //        man.setList(Collections.emptyList());
         man.setList(Collections.EMPTY_LIST);
+    }
+
+    @Test
+    public void test02() {
+        List<Integer> list = Lists.newArrayList(1, 2, 3, 4, 5, 6);
+        List<Integer> list1 = new ArrayList<>();
+        list1.addAll(list);
+        list = list.stream().filter(i -> i % 2 == 0).collect(Collectors.toList());
+        System.out.println(list);
+        System.out.println(list1);
     }
 
 }

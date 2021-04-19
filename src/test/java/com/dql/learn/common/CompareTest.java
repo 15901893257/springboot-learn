@@ -1,7 +1,9 @@
 package com.dql.learn.common;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.assertj.core.util.Lists;
 import org.junit.Test;
@@ -32,6 +34,13 @@ public class CompareTest {
         dog.setName("dog");
         dog.setAge(13);
         f(dog);
+    }
+
+    @Test
+    public void test03() {
+        List<Dog> dogs = new ArrayList<>();
+        List<String> list = dogs.stream().map(Dog :: getName).collect(Collectors.toList());
+        System.out.println(list);
     }
 
     private void f(Animal animal) {
