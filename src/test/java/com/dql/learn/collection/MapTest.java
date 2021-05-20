@@ -19,7 +19,7 @@ public class MapTest {
         Map<Integer, User> userMap = new HashMap<>();
         userMap.put(23, user);
         user.setName("hello");
-        System.out.print(userMap.get(23));
+        System.out.print(userMap);
     }
 }
 

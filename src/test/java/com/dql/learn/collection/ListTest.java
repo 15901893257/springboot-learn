@@ -62,7 +62,7 @@ public class ListTest {
         List<Integer> list2 = Lists.newArrayList(list);
         list2.addAll(list1);
         List<Integer> list3 = list;
-        list.add(12);
+        list3.add(12);
 //        list = list.stream().filter(i -> i % 2 > 0).collect(Collectors.toList());
         System.out.println(list);
         System.out.println(list3);

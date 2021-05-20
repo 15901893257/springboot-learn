@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class StreamTest {
         List<User> userList = users.stream()
                 .sorted((o1, o2) -> o1.getTime() - o2.getTime() > 0 ? -1 : 1)
                 .collect(Collectors.toList());
-        userList.forEach(System.out :: println);
+        userList.forEach(System.out::println);
     }
 
     @Test
@@ -54,7 +55,39 @@ public class StreamTest {
         user.setAge(4);
         users.add(user);
         Collections.sort(users, (o1, o2) -> -1);
-        users.forEach(System.out :: println);
+        users.forEach(System.out::println);
+    }
+
+    @Test
+    public void test02() {
+        List<User> users = getUserList();
+        Map<Integer, Long> map = users.stream().collect(Collectors.groupingBy(User::getAge, Collectors.counting()));
+        map.forEach((k,v) -> {
+            System.out.println(k + ": " + v);
+        });
+
+    }
+
+    private List<User> getUserList() {
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i <= 20; i++) {
+            User user = new User();
+            user.setName("mai" + i);
+            user.setTime(Long.valueOf(i));
+            user.setAge(i);
+            users.add(user);
+        }
+
+        for (int i = 10; i <= 20; i++) {
+            User user = new User();
+            user.setName("mai" + i);
+            user.setTime(Long.valueOf(i));
+            user.setAge(i);
+            users.add(user);
+        }
+
+        return users;
+
     }
 
 

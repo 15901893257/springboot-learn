@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import com.dql.learn.param.QueryParam;
 import com.google.common.collect.Lists;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -65,4 +67,49 @@ public class CommonTest {
         }
         return "";
     }
+
+    @Test
+    public void test03() throws IllegalAccessException {
+        Man man = new Man();
+        man.setId(123L);
+        man.setIds(Lists.newArrayList(1L, 3L));
+        man.setNames(Lists.newArrayList("mai", "deng", "lee"));
+        for (Field field : man.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+//            System.out.println(field.getName());
+            if (Long.class == field.getType()) {
+                System.out.println(field.getName() + ": " + field.get(man));
+            }
+            if (List.class == field.getType()) {
+                System.out.println(field.getName() + ": " + field.get(man));
+            }
+        }
+    }
+
+    @Test
+    public void test04() {
+        String s = "adOrderPlanIds";
+
+        System.out.println(toColumn(s));
+    }
+
+    /**
+     * 驼峰转下划线命名
+     * @param field
+     * @return
+     */
+    public static String toColumn(String field) {
+        if (StringUtils.isBlank(field)) {
+            return "";
+        }
+        String s = field.replaceAll("[A-Z]", "_$0").toLowerCase();
+        return s.substring(0, s.length() - 1);
+    }
+}
+
+@Data
+class Man {
+    private List<Long> ids;
+    private Long id;
+    private List<String> names;
 }

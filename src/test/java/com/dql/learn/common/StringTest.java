@@ -23,6 +23,10 @@ import lombok.Data;
  */
 public class StringTest {
 
+    private String brandOrderSql = "SELECT account_id, sum(total_net_price) total_net_price "
+            + "WHERE p_date = '%s' AND account_id IN (%s) "
+            + "AND deliver_start_time >= %s AND deliver_start_time <= %s";
+
     @Test
     public void testJoin() {
         List<String> list = Lists.newArrayList("1", "2", "3");
@@ -128,6 +132,23 @@ public class StringTest {
         List<String> strings = list.stream().map(User::getName).distinct().collect(Collectors.toList());
         System.out.println(strings);
     }
+
+    @Test
+    public void test05() {
+        List<Long> accountIds = Lists.newArrayList(1L, 2L, 3L, 19L);
+        String pDate = "20210201";
+        long startTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
+        String sql = buildSql(brandOrderSql, pDate, accountIds, startTime, endTime);
+        System.out.println(sql);
+    }
+
+    public String buildSql(String sql, String pDate, List<Long> accountIds,  long startTime, long endTime) {
+        return String.format(sql, pDate, StringUtils.join(accountIds, ","), startTime, endTime);
+    }
+
+
+
 }
 
 @Data
