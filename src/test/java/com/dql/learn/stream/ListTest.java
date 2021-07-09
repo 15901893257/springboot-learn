@@ -93,8 +93,21 @@ public class ListTest {
         System.out.println(list);
     }
 
+    @Test
+    public void test09() {
+        String word = "hello, hello , mai ,123";
+        splitWord1(word).forEach(e -> {
+            System.out.println(e + ": " + e.length());
+        });
+    }
+
     private List<String> splitWord(String word) {
         Iterable<String> iterable = Splitter.on(",").trimResults().split(word);
+        return Lists.newArrayList(iterable);
+    }
+
+    private List<String> splitWord1(String word) {
+        Iterable<String> iterable = Splitter.on(",").split(word);
         return Lists.newArrayList(iterable);
     }
 

@@ -49,10 +49,11 @@ public class ListTest {
     @Test
     public void test03() {
         List<Integer> list = Lists.newArrayList(1, 2, 3, 4);
-        List<Integer> list1 = Lists.newArrayList(6, 7, 8);
-        List<Integer> list2 = Lists.newArrayList(list);
-        list2.addAll(list1);
-        System.out.println(list);
+        List<Integer> list1 = Lists.newArrayList(3, 6, 7, 8);
+//        List<Integer> list2 = Lists.newArrayList(list);
+//        list2.addAll(list1);
+        list1.retainAll(Collections.singletonList(6));
+        System.out.println(list1);
     }
 
     @Test

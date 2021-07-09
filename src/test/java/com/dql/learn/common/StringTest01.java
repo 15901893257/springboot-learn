@@ -26,6 +26,9 @@ public class StringTest01 {
 
     @Test
     public void test03() {
-        System.out.println(true && true || true && false);
+        String time = "startTime";
+        System.out.println(time.endsWith("Time"));
     }
+
+
 }

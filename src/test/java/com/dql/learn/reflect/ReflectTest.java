@@ -1,6 +1,7 @@
 package com.dql.learn.reflect;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import org.assertj.core.util.Lists;
 import org.junit.Test;
@@ -38,7 +39,13 @@ public class ReflectTest {
 //            } else {
 //                value = val.toString();
 //            }
-            System.out.println(field.getName() + ": " + val.toString());
+//            System.out.println(field.getName() + ": " + val.toString());
+            System.out.println(field.getName()  + ": " + field.getType());
+            if (List.class != field.getType() && String.class != field.getType()) {
+                System.out.println("no");
+                continue;
+            }
+
         }
     }
 }
